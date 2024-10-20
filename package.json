@@ -1,0 +1,22 @@
+{
+  "dependencies": {
+    "@types/dotenv": "^8.2.0",
+    "dotenv": "^16.4.5",
+    "telegraf": "^4.16.3",
+    "telegraf-session-local": "^2.1.1"
+  },
+  "name": "JackFlaggBot",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^22.7.7",
+    "@types/nodemon": "^1.19.6",
+    "nodemon": "^3.1.7",
+    "typescript": "^5.6.3"
+  },
+  "scripts": {
+    "watch": "tsc -w",
+    "dev": "yarn nodemon --inspect dist/index.js"
+  }
+}
