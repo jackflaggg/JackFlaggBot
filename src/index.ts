@@ -1,11 +1,20 @@
-import {Telegraf, Markup} from 'telegraf'
+import {Telegraf, Markup, Scenes} from 'telegraf'
 import {Settings} from "./settings";
-import {MyContext} from "./models/common";
+import {MyContext, MySessionScene} from "./models/common";
+import LocalSession from "telegraf-session-local"
 
+const { leave, enter } = Scenes.Stage;
+const testScene = new Scenes.BaseScene<MyContext>('empty')
+testScene.enter((ctx => ctx.reply('Привет!')));
+testScene.command('back',leave<MyContext>() )
+testScene.hears('text', ctx => ctx.reply(ctx.message.text));
+testScene.leave((ctx => ctx.reply('Пока!')))
+
+const stage = new Scenes.Stage<MyContext>([testScene])
 
 const bot = new Telegraf<MyContext>(Settings.token);
-
-
+bot.use(new LocalSession({ database: 'session.json' }).middleware());
+bot.use(stage.middleware());
 bot.use((ctx, next) => {
     ctx.session.myProp;
     ctx.scene.session.myProps;

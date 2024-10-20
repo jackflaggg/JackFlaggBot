@@ -1,4 +1,5 @@
 import {Scenes, Context} from "telegraf";
+import LocalSession from "telegraf-session-local"
 
 
 export interface MySessionScene extends Scenes.SceneSessionData {
